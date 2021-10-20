@@ -6,24 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mastermind</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="src/index.js"></script>
+    <script src="src/index.js" defer></script>
 </head>
 <body>
-    <div id="signup-form">
-        <form action="/users" method="post">
-            <label for="name">Name:</label>
-            <input type="text" name="name" id="userNameInput">
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="userEmailInput">
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="userPasswordInput">
-            <label for="password_confirmation">Confirm Password:</label>
-            <input type="password" name="password_confirmation" id="userPasswordConfirmation">
-            <div class="buttons">
-                <input type="submit" value="Create Account">
-                <input type="button" value="Login">
-            </div>
-        </form>
-    </div>
+    <button id="openSignup" value="signup">Sign Up</button>
 </body>
 </html>
