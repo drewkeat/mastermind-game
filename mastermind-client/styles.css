@@ -1,3 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background: lightblue;
+}
+
+#signup-form {
+    margin: auto;
+    height: 100vh;
+    width: 50vw;
+    display: grid;
+}
+
+#signup-form > form {
+    border: 2px solid black;
+    background-color: #ffa07aaa;
+    align-self: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+}
+
+#signup-form > form > .buttons {
+    display: grid;
+    margin: .5rem;
+    justify-items: center;
+    grid-template-columns: repeat(2, 1fr);
 }
