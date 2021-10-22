@@ -3,7 +3,7 @@ class SignUpForm {
        document.body.innerHTML += 
        `<div id="form-wrapper">
         <div id="signup-form">
-        <form action="/users" method="post">
+        <form action="http://localhost:3000/users" method="post">
             <label for="name">Name:</label>
             <input type="text" name="name" id="userNameInput">
             <label for="email">Email:</label>
@@ -20,4 +20,19 @@ class SignUpForm {
         </div>
     </div>`
    }
+   
+   bindListeners() {
+        let submitBtn = document.querySelector("#signup-form >* input[type=submit]")
+
+        let loginBtn = document.querySelector("#signup-form >* input[type=button]")
+
+       submitBtn.addEventListener("click", (e) =>{ 
+        e.preventDefault()
+        // Replace below with fetch(baseURL, postObject)
+        console.log("clicked")
+       })
+       
+       loginBtn.addEventListener("click", (e) => console.log("clicked"))
+   }
+
 }

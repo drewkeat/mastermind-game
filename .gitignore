@@ -23,7 +23,7 @@ mastermind-api/tmp/pids/*
 # Ignore uploaded files in development.
 mastermind-api/storage/*
 !mastermind-api/storage/.keep
-mastermind-api.byebug_history
+mastermind-api/.byebug_history
 
 # Ignore master key for decrypting credentials and more.
 mastermind-api/config/master.key

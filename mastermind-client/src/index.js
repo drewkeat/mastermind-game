@@ -5,7 +5,8 @@ const signupButton = document.getElementById("openSignup")
 
 signupButton.addEventListener("click", () => {
     let form = new SignUpForm()
-    form.build()
+    form.build();
+    form.bindListeners();
 })
 
 function clearDoc() {
