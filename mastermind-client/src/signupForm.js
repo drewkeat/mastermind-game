@@ -30,6 +30,13 @@ class SignUpForm {
         e.preventDefault()
         // Replace below with fetch(baseURL, postObject)
         console.log("clicked")
+        fetch("http://localhost:3000/users", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'applicationn/json'
+            },
+            body: JSON.stringify(userData),
+        }).then(response => response.json()).then(data => console.log(data));
        })
        
        loginBtn.addEventListener("click", (e) => console.log("clicked"))
