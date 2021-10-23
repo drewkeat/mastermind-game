@@ -35,8 +35,18 @@ class SignUpForm {
                 },
                 body: JSON.stringify(this.getUserData())
             }
-            fetch("http://localhost:3000/users", userData).then(response => response.json()).
-            then(data => console.log(data));
+            fetch("http://localhost:3000/users", userData)
+            .then(response => {
+                if (!response.ok) {
+                    return response.json()
+                }
+                return console.log("New User Created")
+            })
+            .then(errors => {
+                // const message = errors
+                debugger
+                alert(`Something went wrong: ${message}`)
+            });
        })
 
        loginBtn.addEventListener("click", (e) => console.log("clicked"))
