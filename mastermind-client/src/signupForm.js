@@ -1,4 +1,5 @@
 class SignUpForm {
+// append #signup-form to index.html
     build() {
        document.body.innerHTML += 
        `<div id="form-wrapper">
@@ -20,26 +21,36 @@ class SignUpForm {
         </div>
     </div>`
    }
-   
+// add event listeners to submit and login buttons
    bindListeners() {
-        let submitBtn = document.querySelector("#signup-form >* input[type=submit]")
-
-        let loginBtn = document.querySelector("#signup-form >* input[type=button]")
-
-       submitBtn.addEventListener("click", (e) =>{ 
-        e.preventDefault()
-        // Replace below with fetch(baseURL, postObject)
-        console.log("clicked")
-        fetch("http://localhost:3000/users", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'applicationn/json'
-            },
-            body: JSON.stringify(userData),
-        }).then(response => response.json()).then(data => console.log(data));
+        const submitBtn = document.querySelector("#signup-form >* input[type=submit]")
+        const loginBtn = document.querySelector("#signup-form >* input[type=button]")
+        submitBtn.addEventListener("click", (e) =>{ 
+        //prevent standard Form behavior to send POST request via Fetch
+            e.preventDefault()
+        // define configObject for fetch
+            const userData = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(this.getUserData())
+            }
+            fetch("http://localhost:3000/users", userData).then(response => response.json()).
+            then(data => console.log(data));
        })
-       
+
        loginBtn.addEventListener("click", (e) => console.log("clicked"))
    }
 
+   getUserData() {
+        const fields = document.querySelectorAll("#signup-form >* input")
+        return {user: {
+        name: `${fields[0].value}`,
+        email: `${fields[1].value}`,
+        password: `${fields[2].value}`,
+        password_confirmation: `${fields[3].value}`
+        }}
+    }
 }
