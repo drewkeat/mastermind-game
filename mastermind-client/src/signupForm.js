@@ -5,14 +5,12 @@ class SignUpForm {
        `<div id="form-wrapper">
         <div id="signup-form">
         <form action="http://localhost:3000/users" method="post">
-            <label for="name">Name:</label>
-            <input type="text" name="name" id="userNameInput">
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="userEmailInput">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="usernameInput">
             <label for="password">Password:</label>
-            <input type="password" name="password" id="userPasswordInput">
+            <input type="password" name="password" id="passwordInput">
             <label for="password_confirmation">Confirm Password:</label>
-            <input type="password" name="password_confirmation" id="userPasswordConfirmation">
+            <input type="password" name="password_confirmation" id="passwordConfirmationInput">
             <div class="buttons">
                 <input type="submit" value="Create Account">
                 <input type="button" value="Login">
@@ -47,10 +45,9 @@ class SignUpForm {
    getUserData() {
         const fields = document.querySelectorAll("#signup-form >* input")
         return {user: {
-        name: `${fields[0].value}`,
-        email: `${fields[1].value}`,
-        password: `${fields[2].value}`,
-        password_confirmation: `${fields[3].value}`
+        username: `${fields[0].value}`,
+        password: `${fields[1].value}`,
+        password_confirmation: `${fields[2].value}`
         }}
     }
 }
