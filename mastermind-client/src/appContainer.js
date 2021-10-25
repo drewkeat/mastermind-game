@@ -4,6 +4,4 @@ class AppContainer {
         this.user = {};
         this.game = {};
     }
-
-    
 }

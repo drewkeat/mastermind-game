@@ -29,32 +29,7 @@ class SignUpForm {
         submitBtn.addEventListener("click", (e) =>{ 
         //prevent standard Form behavior to send POST request via Fetch
             e.preventDefault()
-        // define configObject for fetch
-            const userData = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(this.getUserData())
-            }
-            fetch("http://localhost:3000/users", userData)
-            .then(response => {
-                if (!response.ok) {
-                    return response.json()
-                }
-                return console.log("New User Created")
-            })
-            .then(errors => {
-                for (let error in errors) {
-                    let ele = document.querySelector(`label[for=${error}]`)
-                    ele.setAttribute('data-after', `${errors[error]}`);
-                    document.addEventListener('click', (e) => {
-                        const labels = document.querySelectorAll('label')
-                        labels.forEach(label => label.setAttribute('data-after',''))
-                    })
-                }
-            });
+            User.createUser(this.getUserData())
        })
 
        loginBtn.addEventListener("click", (e) => console.log("clicked"))
