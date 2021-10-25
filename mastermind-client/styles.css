@@ -1,3 +1,15 @@
+:root {
+    --color-1: #ffeb3b;
+    --color-2: #3f51b5;
+    --color-3: #9c27b0;
+    --color-4: #4caf50;
+    --color-5: #03a9f4;
+    --color-6: #ff22b1;
+    --color-7: #7fff00;
+    --color-8: #e91e63;
+
+}
+
 * {
     margin: 0px;
     box-sizing: border-box;
@@ -10,7 +22,7 @@ body {
 #main-wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: min-content 100% min-content;
+    grid-auto-rows: min-content 100% min-content;
     height: 100vh;
 }
 
@@ -92,7 +104,7 @@ footer {
 #form-wrapper {
     width: 100vw;
     height: 100vh;
-    background: #0008;
+    background: #000c;
     display: grid;
     align-content: center;
     justify-items: center;
@@ -111,7 +123,7 @@ footer {
 
 #signup-form > form {
     border: 2px solid black;
-    background-color: #ffa07aee;
+    background-color: #ffa07a;
     align-self: center;
     display: grid;
     grid-template-columns: 1fr;
@@ -129,4 +141,36 @@ label::after {
     color: #f00;
     background: yellow;
     content: attr(data-after);
+}
+
+.color-1 {
+    background: var(--color-1);
+}
+
+.color-2 {
+    background: var(--color-2);
+}
+
+.color-3 {
+    background: var(--color-3);
+}
+
+.color-4 {
+    background: var(--color-4);
+}
+
+.color-5 {
+    background: var(--color-5);
+}
+
+.color-6 {
+    background: var(--color-6);
+}
+
+.color-7 {
+    background: var(--color-7);
+}
+
+.color-8 {
+    background: var(--color-8);
 }

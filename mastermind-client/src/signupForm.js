@@ -5,6 +5,9 @@ class SignUpForm {
        `<div id="form-wrapper">
         <div id="signup-form">
         <form action="http://localhost:3000/users" method="post">
+            <hr>
+            <h2 style="text-align: center;"> Sign Up or Login </h2>
+            <hr>
             <label for="username">Username:</label>
             <input type="text" name="username" id="usernameInput">
             <label for="password">Password:</label>
