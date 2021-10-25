@@ -15,24 +15,20 @@ class SignUpForm {
             <label for="password_confirmation">Confirm Password:</label>
             <input type="password" name="password_confirmation" id="passwordConfirmationInput">
             <div class="buttons">
-                <input type="submit" value="Create Account">
-                <input type="button" value="Login">
+                <input type="submit" value="Create Account/Login">
             </div>
         </form>
         </div>
     </div>`
    }
-// add event listeners to submit and login buttons
+// add event listeners to button
    bindListeners() {
         const submitBtn = document.querySelector("#signup-form >* input[type=submit]")
-        const loginBtn = document.querySelector("#signup-form >* input[type=button]")
         submitBtn.addEventListener("click", (e) =>{ 
         //prevent standard Form behavior to send POST request via Fetch
             e.preventDefault()
-            User.persistUser(this.getUserData())
+            User.findOrPersistUser(this.getUserData())
        })
-
-       loginBtn.addEventListener("click", (e) => console.log("clicked"))
    }
 
    getUserData() {

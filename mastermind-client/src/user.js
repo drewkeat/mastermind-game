@@ -5,7 +5,7 @@ class User {
     this.games = [];
   }
 
-  static persistUser(userData) {
+  static findOrPersistUser(userData) {
     let responseObject;
     fetch(`${app.url}/users`, {
       method: "POST",
