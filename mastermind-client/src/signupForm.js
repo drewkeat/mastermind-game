@@ -43,9 +43,14 @@ class SignUpForm {
                 return console.log("New User Created")
             })
             .then(errors => {
-                // const message = errors
-                debugger
-                alert(`Something went wrong: ${message}`)
+                for (let error in errors) {
+                    let ele = document.querySelector(`label[for=${error}]`)
+                    ele.setAttribute('data-after', `${errors[error]}`);
+                    document.addEventListener('click', (e) => {
+                        const labels = document.querySelectorAll('label')
+                        labels.forEach(label => label.setAttribute('data-after',''))
+                    })
+                }
             });
        })
 

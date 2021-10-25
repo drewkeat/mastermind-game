@@ -42,3 +42,9 @@ body {
     justify-items: center;
     grid-template-columns: repeat(2, 1fr);
 }
+
+label::after {
+    color: #f00;
+    background: yellow;
+    content: attr(data-after);
+}
