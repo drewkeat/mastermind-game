@@ -49,4 +49,7 @@ class Game {
     </div>`
     }
 
+    updateBoard() {
+        document.querySelector('#board').getInnerHtml
+    }
 }

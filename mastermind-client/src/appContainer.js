@@ -5,6 +5,11 @@ class AppContainer {
         this.game = new Game();
     }
 
+    beginGame() {
+        this.game.user = this.user
+        this.renderBoard()
+    }
+    
     renderBoard() {
         document.querySelector('main').innerHTML = this.game.board
     }
