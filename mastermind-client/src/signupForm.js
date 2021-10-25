@@ -29,7 +29,7 @@ class SignUpForm {
         submitBtn.addEventListener("click", (e) =>{ 
         //prevent standard Form behavior to send POST request via Fetch
             e.preventDefault()
-            User.createUser(this.getUserData())
+            User.persistUser(this.getUserData())
        })
 
        loginBtn.addEventListener("click", (e) => console.log("clicked"))
