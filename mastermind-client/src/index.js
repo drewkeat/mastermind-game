@@ -8,3 +8,5 @@ signupButton.addEventListener("click", () => {
     form.build();
     form.bindListeners();
 })
+
+app.renderBoard()
