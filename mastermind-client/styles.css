@@ -10,19 +10,19 @@
 
 }
 
-* {
-    margin: 0px;
+*, *::after, *::before {
     box-sizing: border-box;
 }
 
 body {
+    margin: 0px;
     background: lightblue;
 }
 
 #main-wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: min-content 100% min-content;
+    grid-auto-rows: min-content 1fr min-content;
     height: 100vh;
 }
 

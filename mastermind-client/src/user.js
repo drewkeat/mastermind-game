@@ -23,6 +23,7 @@ class User {
             //Set current user & remove form overlay
           let user = new User(data.id, data.username);
           app.user = user;
+          app.game.user = user;
           document.getElementById('form-wrapper').remove();
         } else {
             //Display errors on form
