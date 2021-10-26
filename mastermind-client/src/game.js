@@ -136,6 +136,38 @@ class Game {
                 e.target.classList = document.querySelector('.peg[data-dragging]').classList
             })
         })
+        const checkGuess = document.querySelector('.guess-row >* button')
+        checkGuess.addEventListener('click', (e) => this.checkGuess())
+    }
+
+    generateCombo() {
+        let colors = []
+        let combo = []
+        const pegs = document.querySelectorAll('.peg-tray > .peg')
+        for (const peg of pegs) {
+            colors.push(peg.classList[1])
+        }
+        do {
+            let color = colors[Math.floor(Math.random() * colors.length)]
+            if (!combo.includes(color)){
+                combo.push(color)
+            }
+        } while (combo.length < 4)
+        this.combo = combo
+    }
+
+    checkGuess() {
+        console.log('check guess')
+        
+        let guess = []
+        const guessPegs = document.querySelectorAll('.guess-row >* .peg')
+        let rightPlace = 0
+        let rightColor = 0
+
+        guessPegs.forEach(peg => guess.push(peg.classList[1]))
+        // iterate through combo update rightPlace for # of elements in guess[index] that match combo[index]
+
+        //iterate through combo update rightColor for # of elements that guess.includes()
     }
 
 }
