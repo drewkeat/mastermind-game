@@ -8,4 +8,4 @@ signupButton.addEventListener("click", () => {
     form.bindListeners();
 })
 
-app.beginGame()
+app.game.begin()

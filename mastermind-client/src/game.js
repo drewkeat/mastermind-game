@@ -3,50 +3,7 @@ class Game {
         this.user
         this.combo
         this.score = 10000
-        this.board = `<div id="board">
-        <div id="board-head">
-            <b>Combination</b>
-            <div class="row">
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-            </div>
-        </div>
-        <div id="board-guesses">
-            Guesses
-            <div class="guess-row">
-                <div class="feedback-box">
-                    <div class="feedback hole"></div>
-                    <div class="feedback hole"></div>
-                    <div class="feedback hole"></div>
-                    <div class="feedback hole"></div>
-                </div>
-                <div class="row">
-                    <div class="hole"></div>
-                    <div class="hole"></div>
-                    <div class="hole"></div>
-                    <div class="hole"></div>
-                </div>
-                <div class="action-box">
-                    <button>Check Guess</button>
-                </div>
-            </div>
-        </div>
-        <div id="board-footer">
-            Peg Collection
-            <div class="peg-tray">
-                <div class="peg color-1" draggable="true"></div>
-                <div class="peg color-2" draggable="true"></div>
-                <div class="peg color-3" draggable="true"></div>
-                <div class="peg color-4" draggable="true"></div>
-                <div class="peg color-5" draggable="true"></div>
-                <div class="peg color-6" draggable="true"></div>
-                <div class="peg color-7" draggable="true"></div>
-                <div class="peg color-8" draggable="true"></div>
-            </div>
-        </div>
-    </div>`
+        this.board = document.querySelector('#newBoard').innerHTML
     }
 
     // resetBoardState
@@ -55,6 +12,12 @@ class Game {
     // checkGuess
     // renderFeedback
     // changeActiveRow
+
+    begin() {
+        this.renderBoardState()
+        this.bindEventListeners()
+        this.generateCombo()
+    }
 
     updateBoardState() {
         const state = document.querySelector('#board').getInnerHTML()
@@ -67,48 +30,7 @@ class Game {
     }
 
     resetBoardState() {
-        document.querySelector('#board').innerHTML = `<div id="board-head">
-        <b>Combination</b>
-        <div class="row">
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-            <div class="box"></div>
-        </div>
-    </div>
-    <div id="board-guesses">
-        Guesses
-        <div class="guess-row">
-            <div class="feedback-box">
-                <div class="feedback hole"></div>
-                <div class="feedback hole"></div>
-                <div class="feedback hole"></div>
-                <div class="feedback hole"></div>
-            </div>
-            <div class="row">
-                <div class="hole"></div>
-                <div class="hole"></div>
-                <div class="hole"></div>
-                <div class="hole"></div>
-            </div>
-            <div class="action-box">
-                <button>Check Guess</button>
-            </div>
-        </div>
-    </div>
-    <div id="board-footer">
-        Peg Collection
-        <div class="peg-tray">
-            <div class="peg color-1" draggable="true"></div>
-            <div class="peg color-2" draggable="true"></div>
-            <div class="peg color-3" draggable="true"></div>
-            <div class="peg color-4" draggable="true"></div>
-            <div class="peg color-5" draggable="true"></div>
-            <div class="peg color-6" draggable="true"></div>
-            <div class="peg color-7" draggable="true"></div>
-            <div class="peg color-8" draggable="true"></div>
-        </div>
-    </div>`
+        document.querySelector('main').innerHTML = document.querySelector('#newBoard').innerHTML
     }
 
     bindEventListeners() {
@@ -168,6 +90,11 @@ class Game {
         // iterate through combo update rightPlace for # of elements in guess[index] that match combo[index]
 
         //iterate through combo update rightColor for # of elements that guess.includes()
+    }
+
+    displayCombo() {
+        const pegs = document.querySelectorAll('.box')
+        pegs.forEach((peg, index) => peg.className = `peg ${app.game.combo[index]}`)
     }
 
 }

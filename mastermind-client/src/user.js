@@ -6,7 +6,6 @@ class User {
   }
 
   static findOrPersistUser(userData) {
-    let responseObject;
     fetch(`${app.url}/users`, {
       method: "POST",
       headers: {
@@ -24,7 +23,10 @@ class User {
           let user = new User(data.id, data.username);
           app.user = user;
           app.game.user = user;
+          let welcomeBadge = document.createElement('h3')
+          welcomeBadge.textContent = `Welcome,\n ${user.name}`
           document.getElementById('form-wrapper').remove();
+          document.getElementById('openSignup').replaceWith(welcomeBadge);
         } else {
             //Display errors on form
           for (let error in data) {

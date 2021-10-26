@@ -5,8 +5,4 @@ class AppContainer {
         this.game = new Game();
     }
 
-    beginGame() {
-        this.game.user = this.user
-        this.game.renderBoardState()
-    }
 }
