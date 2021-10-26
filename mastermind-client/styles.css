@@ -7,6 +7,7 @@
     --color-6: #ff22b1;
     --color-7: #7fff00;
     --color-8: #e91e63;
+    --hole-size: calc()
 
 }
 
@@ -91,6 +92,28 @@ main {
     background: black;
     height: 1rem;
     width: 1rem;
+}
+
+.peg {
+    cursor: grab;
+}
+
+.box {
+    background: antiquewhite;
+    height: 1rem;
+    width: 1rem;
+    border: 1px solid black;
+    outline: 2px groove white;
+    box-shadow: -5px 3px 10px black;
+}
+
+.box::after {
+    content: "?";
+    color: blue;
+}
+
+.dragging {
+    cursor: grabbing;
 }
 
 footer {

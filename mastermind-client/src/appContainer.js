@@ -7,10 +7,6 @@ class AppContainer {
 
     beginGame() {
         this.game.user = this.user
-        this.renderBoard()
-    }
-    
-    renderBoard() {
-        document.querySelector('main').innerHTML = this.game.board
+        this.game.renderBoardState()
     }
 }
