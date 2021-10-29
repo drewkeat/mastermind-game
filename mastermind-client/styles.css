@@ -7,6 +7,8 @@
     --color-6: #ff22b1;
     --color-7: #7fff00;
     --color-8: #e91e63;
+    --color-right-place: red;
+    --color-right-color: white;
 }
 
 *, *::after, *::before {
@@ -194,4 +196,12 @@ label::after {
 
 .color-8 {
     background: var(--color-8);
+}
+
+.right-place {
+    background: var(--color-right-place);
+}
+
+.right-color {
+    background: var(--color-right-color);
 }

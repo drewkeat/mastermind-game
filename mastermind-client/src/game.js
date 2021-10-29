@@ -58,8 +58,8 @@ class Game {
                 e.target.classList = document.querySelector('.peg[data-dragging]').classList
             })
         })
-        const checkGuess = document.querySelector('.guess-row >* button')
-        checkGuess.addEventListener('click', (e) => this.checkGuess())
+        const guessButtons = document.querySelectorAll('.guess-row >* button')
+        guessButtons.forEach(button => button.addEventListener('click', (e) => this.checkGuess()))
     }
 
     generateCombo() {
@@ -77,16 +77,41 @@ class Game {
         } while (combo.length < 4)
         this.combo = combo
     }
-
     checkGuess() {
-        console.log('check guess')
-        
-        let guess = []
-        const guessPegs = document.querySelectorAll('.guess-row >* .peg')
-        let rightPlace = 0
-        let rightColor = 0
+        const accuracy = this.guessAccuracy();
+        const feedbackPegs = document.querySelectorAll('[data-active-row] > .feedback-box >*')
+        for (let i = 0; i < accuracy[0]; i++) {
+            feedbackPegs[i].classList.add("right-place")
+        };
 
-        guessPegs.forEach(peg => guess.push(peg.classList[1]))
+        for (let i=accuracy[0]; i < accuracy[1]; i++) {
+            feedbackPegs[i].classList.add("right-color")
+        }
+
+        //Finish method with change active row and calculate score
+    }
+    guessAccuracy() {
+        let rightPlace = 0;
+        let rightColor = 0;
+        let tempCombo = this.combo
+        let tempGuess = []
+        const nodes = document.querySelectorAll('[data-active-row] > .row >*')
+        nodes.forEach(node => tempGuess.push(node.classList[1]))
+
+        tempGuess.forEach((peg, index) => {
+            if (tempCombo[index] == peg) {
+                rightPlace += 1
+                peg= "x"
+            }
+        })
+
+        tempGuess.forEach((peg, index) => {
+            if (tempCombo.includes(peg)) {
+                rightColor += 1
+            }
+        })
+        return [rightPlace, rightColor]
+
         // iterate through combo update rightPlace for # of elements in guess[index] that match combo[index]
 
         //iterate through combo update rightColor for # of elements that guess.includes()
