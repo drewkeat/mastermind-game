@@ -19,7 +19,7 @@ class Game {
         this.generateCombo()
     }
 
-    updateBoardState() {
+    saveBoardState() {
         const state = document.querySelector('#board').getInnerHTML()
         this.board = `<div id="board"> ${state} </div>`
     }
