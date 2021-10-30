@@ -38,95 +38,54 @@ class Game {
     }
 
     bindEventListeners() {
-        const draggables = document.querySelectorAll('.peg')
-        draggables.forEach(peg => {
-            peg.addEventListener('dragstart', (e) => {
-                peg.dataset.dragging = 'true';
-        });
-            peg.addEventListener('dragend', (e) => {
-                peg.removeAttribute('data-dragging')
-            })
-        })
-        const dropzones = document.querySelectorAll('[data-active-row] >* .hole')
+        const dropzones = document.querySelectorAll('[data-active-row] > .row >*')
+        const draggables = document.querySelectorAll('[draggable]')
+        const guessButton = document.querySelectorAll('[data-active-row] >* button')
+
+        draggables.forEach(peg => 
+            {
+                peg.addEventListener('dragstart', e => {
+                e.target.classList.add('dragging')
+                })
+                peg.addEventListener('dragend', e => {
+                    e.target.classList.remove('dragging')
+                })
+                peg.addEventListener('drop', e => {
+                    e.preventDefault()
+                    e.target.classList.remove('dragging')
+                })
+            }
+        )
+
         dropzones.forEach(hole => {
-            hole.addEventListener('dragenter', (e) => {
-                e.target.classList = `hole ${document.querySelector('.peg[data-dragging]').classList[1]}`
+            hole.addEventListener('dragenter', e => {
+                e.target.classList.add( document.querySelector('.dragging').classList[1])
+            }
+            )
+
+            hole.addEventListener('dragleave', e => {
+                e.target.classList.remove( document.querySelector('.dragging').classList[1])
             })
 
-            hole.addEventListener('dragleave', (e) => {
-                e.target.classList = 'hole'
-            })
-
-            hole.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                e.target.classList = `hole ${document.querySelector('.peg[data-dragging]').classList[1]}`
-            })
+            hole.addEventListener('dragover', e => {
+                e.preventDefault()
+                e.target.className = `hole ${document.querySelector('.dragging').classList[1]}`
+            }
+            )
         })
-        const guessButtons = document.querySelectorAll('.guess-row >* button')
-        guessButtons.forEach(button => button.addEventListener('click', (e) => this.checkGuess()))
+
+        guessButton.addEventListener('click', checkGuess())
+    
     }
 
     generateCombo() {
-        let colors = []
-        let combo = []
-        const pegs = document.querySelectorAll('.peg-tray > .peg')
-        for (const peg of pegs) {
-            colors.push(peg.classList[1])
-        }
-        do {
-            let color = colors[Math.floor(Math.random() * colors.length)]
-            if (!combo.includes(color)){
-                combo.push(color)
-            }
-        } while (combo.length < 4)
-        this.combo = combo
     }
 
     checkGuess() {
-        const accuracy = this.guessAccuracy();
-        const feedbackPegs = document.querySelectorAll('[data-active-row] > .feedback-box >*')
-        for (let i = 0; i < accuracy[0]; i++) {
-            feedbackPegs[i].classList.add("right-place")
-        };
-
-        for (let i=accuracy[0]; i <= accuracy[1]; i++) {
-            feedbackPegs[i].classList.add("right-color")
         }
 
-        //Finish method with change active row and calculate score
-    }
-
-    guessAccuracy() {
-        let rightPlace = 0;
-        let rightColor = 0;
-        let tempCombo = [...this.combo]
-        let tempGuess = []
-        const nodes = document.querySelectorAll('[data-active-row] > .row >*')
-        nodes.forEach(node => tempGuess.push(node.classList[1]))
-
-        tempGuess.forEach((peg, index) => {
-            if (tempCombo[index] == peg) {
-                rightPlace += 1
-                tempGuess[index] = "x"
-                tempCombo[index] = "o"
-            }
-        })
-
-        tempGuess.forEach((peg, index) => {
-            if (tempCombo.includes(peg)) {
-                rightColor += 1
-            }
-        })
-        return [rightPlace, rightColor]
-
-        // iterate through combo update rightPlace for # of elements in guess[index] that match combo[index]
-
-        //iterate through combo update rightColor for # of elements that guess.includes()
-    }
 
     displayCombo() {
-        const pegs = document.querySelectorAll('.box')
-        pegs.forEach((peg, index) => peg.className = `peg ${app.game.combo[index]}`)
     }
 
 }

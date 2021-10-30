@@ -205,3 +205,15 @@ label::after {
 .right-color {
     background: var(--color-right-color);
 }
+
+.guess-row >* button {
+    display: none;
+}
+
+[data-active-row] {
+background: olive;
+}
+
+[data-active-row] >* button {
+    display: revert
+}
