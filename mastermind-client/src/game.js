@@ -3,7 +3,7 @@ class Game {
         this.user
         this.combo
         this.score = 10000
-        this.board = document.querySelector('#newBoard').innerHTML
+        this.board
     }
 
     // resetBoardState
@@ -25,7 +25,11 @@ class Game {
     }
 
     renderBoardState() {
-        document.querySelector('main').innerHTML=this.board
+        if (this.board) {
+            document.querySelector('main').innerHTML = this.board
+        } else {
+            this.resetBoardState()
+        }
         this.bindEventListeners()
     }
 

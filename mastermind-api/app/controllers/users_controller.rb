@@ -15,8 +15,11 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    if @user = User.find_by(username: user_params[:username]).authenticate(user_params[:password])
-      render json: @user, except: :password_digest
+    # byebug
+    if @user = User.find_by(username: user_params[:username])
+      if @user.authenticate(user_params[:password])
+        render json: @user, except: :password_digest
+      end
     else
       @user = User.new(user_params)
       if @user.save
