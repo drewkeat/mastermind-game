@@ -47,10 +47,10 @@ class Game {
                 peg.removeAttribute('data-dragging')
             })
         })
-        const dropzones = document.querySelectorAll('.row > .hole')
+        const dropzones = document.querySelectorAll('[data-active-row] >* .hole')
         dropzones.forEach(hole => {
             hole.addEventListener('dragenter', (e) => {
-                e.target.classList = document.querySelector('.peg[data-dragging]').classList
+                e.target.classList = `hole ${document.querySelector('.peg[data-dragging]').classList[1]}`
             })
 
             hole.addEventListener('dragleave', (e) => {
@@ -59,7 +59,7 @@ class Game {
 
             hole.addEventListener('dragover', (e) => {
                 e.preventDefault();
-                e.target.classList = document.querySelector('.peg[data-dragging]').classList
+                e.target.classList = `hole ${document.querySelector('.peg[data-dragging]').classList[1]}`
             })
         })
         const guessButtons = document.querySelectorAll('.guess-row >* button')
@@ -81,6 +81,7 @@ class Game {
         } while (combo.length < 4)
         this.combo = combo
     }
+
     checkGuess() {
         const accuracy = this.guessAccuracy();
         const feedbackPegs = document.querySelectorAll('[data-active-row] > .feedback-box >*')
@@ -88,16 +89,17 @@ class Game {
             feedbackPegs[i].classList.add("right-place")
         };
 
-        for (let i=accuracy[0]; i < accuracy[1]; i++) {
+        for (let i=accuracy[0]; i <= accuracy[1]; i++) {
             feedbackPegs[i].classList.add("right-color")
         }
 
         //Finish method with change active row and calculate score
     }
+
     guessAccuracy() {
         let rightPlace = 0;
         let rightColor = 0;
-        let tempCombo = this.combo
+        let tempCombo = [...this.combo]
         let tempGuess = []
         const nodes = document.querySelectorAll('[data-active-row] > .row >*')
         nodes.forEach(node => tempGuess.push(node.classList[1]))
@@ -105,7 +107,8 @@ class Game {
         tempGuess.forEach((peg, index) => {
             if (tempCombo[index] == peg) {
                 rightPlace += 1
-                peg= "x"
+                tempGuess[index] = "x"
+                tempCombo[index] = "o"
             }
         })
 
