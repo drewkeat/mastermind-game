@@ -93,10 +93,16 @@ class Game {
         const guess = []
         guessPegs.forEach(peg => guess.push(peg.classList[1]))
         let accuracy = this.checkAccuracy(guess)
-        console.log(accuracy)
         this.renderFeedback(accuracy)
-        this.changeActiveRow()
+        //update if/else below to include score render methods, restart, and save games
+        if (accuracy[0] === 4) {
+            this.displayCombo()
+            console.log(`You Win! \n Score = ${parseInt(document.querySelector('[data-active-row]').id.match(/guessRow(.*)/)[1]) * 1000} \n (call restart function)`)
+        } else {
+            this.changeActiveRow()
+            console.log(`Updated Score = ${parseInt(document.querySelector('[data-active-row]').id.match(/guessRow(.*)/)[1]) * 1000}`)
         }
+    }
 
     checkAccuracy(guess) {
         let rightPlace = 0
@@ -142,6 +148,11 @@ class Game {
         const currentRow = document.querySelector('[data-active-row]')
         const currentRowNum = parseInt(currentRow.id.match(/guessRow(.*)/)[1])
         const nextRow = document.querySelector(`#guessRow${currentRowNum - 1}`)
+        currentRow.childNodes.forEach(node => {
+            let oldNode = node;
+            let newNode = node.cloneNode(true);
+            oldNode.parentNode.replaceChild(newNode, oldNode)
+            })
         currentRow.toggleAttribute('data-active-row')
         nextRow.toggleAttribute('data-active-row')
         this.bindEventListeners()
