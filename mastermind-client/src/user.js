@@ -22,12 +22,13 @@ class User {
             //Set current user & remove form overlay
           let user = new User(data.id, data.username);
           app.user = user;
-          app.game.user = user;
+          app.game.user = user.id;
           let welcomeBadge = document.createElement('h2')
           welcomeBadge.textContent = `Welcome,\n ${user.name}`
           document.getElementById('form-wrapper').remove();
           document.querySelector('sidebar > h2').remove()
           document.getElementById('openSignup').replaceWith(welcomeBadge);
+          app.game.bindEventListeners()
         } else {
             //Display errors on form
           for (let error in data) {
