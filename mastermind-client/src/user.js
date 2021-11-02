@@ -23,9 +23,10 @@ class User {
           let user = new User(data.id, data.username);
           app.user = user;
           app.game.user = user;
-          let welcomeBadge = document.createElement('h3')
+          let welcomeBadge = document.createElement('h2')
           welcomeBadge.textContent = `Welcome,\n ${user.name}`
           document.getElementById('form-wrapper').remove();
+          document.querySelector('sidebar > h2').remove()
           document.getElementById('openSignup').replaceWith(welcomeBadge);
         } else {
             //Display errors on form
