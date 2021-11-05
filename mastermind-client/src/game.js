@@ -1,5 +1,6 @@
 class Game {
   constructor() {
+    this.id
     this.user;
     this.combo;
     this.score = 10000;
@@ -21,6 +22,11 @@ class Game {
   saveBoardState() {
     const state = document.querySelector("#board").getInnerHTML();
     this.board = `<div id="board"> ${state} </div>`;
+    if (this.id) {
+      this.updateGame()
+    } else {
+      this.persistGame()
+    }
   }
 
   renderBoardState() {
@@ -168,7 +174,7 @@ class Game {
       feedbackHoles[startPlacePegs].classList.add("right-color");
       startPlacePegs++;
     }
-    //render scoreboard here
+    //Update and Render scoreboard here
   }
 
   changeActiveRow() {
@@ -211,12 +217,18 @@ class Game {
       },
       body: JSON.stringify(app.game.makeConfigObj()),
     })
-      .then((response) => {
-        response.json();
+    .then(resp => resp.json())
+    .then(obj => this.id = obj.id)
+  }
+
+  updateGame() {
+    fetch(`${app.url}/games/${app.game.id}`, {
+      method: "PATCH",
+      headers: {
+      "Content-Type": "application/json",
+      Accept: "application/jason"
+      },
+      body: JSON.stringify(app.game.makeConfigObj())
       })
-      .catch((data) => {
-        alert("Something went wrong");
-        console.log(data);
-      });
   }
 }
