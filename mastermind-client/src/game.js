@@ -171,7 +171,6 @@ class Game {
   }
 
   changeActiveRow() {
-    // debugger
     const currentRow = document.querySelector("[data-active-row]");
     const currentRowNum = parseInt(currentRow.id.match(/guessRow(.*)/)[1]);
     const nextRow = document.querySelector(`#guessRow${currentRowNum - 1}`);
