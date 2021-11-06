@@ -15,7 +15,7 @@ class User {
       body: JSON.stringify(userData),
     })
       .then((response) => {
-        return response.json();
+        return response.json()
       })
       .then((data) => {
         if (data.id) {
@@ -40,6 +40,6 @@ class User {
             });
           }
         }
-      });
+      })
   }
 }

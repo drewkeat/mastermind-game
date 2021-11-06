@@ -15,10 +15,11 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    # byebug
     if @user = User.find_by(username: user_params[:username])
       if @user.authenticate(user_params[:password])
         render json: @user, except: :password_digest
+      else
+        render json: {username: 'Invalid Login Information'}, status: :unprocessable_entity
       end
     else
       @user = User.new(user_params)
