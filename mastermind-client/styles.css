@@ -217,3 +217,16 @@ background: olive;
 [data-active-row] >* button {
     display: revert
 }
+
+#scoreBoard {
+    display:grid;
+    grid-template-columns: repeat(2,1fr);
+    border: 10px groove gold;
+    background-color: blanchedalmond;
+}
+
+#scoreBoard > * {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
