@@ -7,13 +7,6 @@ class Game {
     this.board;
   }
 
-  // resetBoardState
-  //     bindEventListeners pegs, holes, active row button
-  // createCombo
-  // checkGuess
-  // renderFeedback
-  // changeActiveRow
-
   begin() {
     this.renderBoardState();
     this.generateCombo();
