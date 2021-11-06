@@ -124,7 +124,7 @@ footer {
     text-align: center;
 }
 
-#form-wrapper {
+#form-wrapper, #overlay {
     width: 100vw;
     height: 100vh;
     background: #000c;
@@ -137,20 +137,25 @@ footer {
     z-index: 2;
 }
 
-#signup-form {
+#signup-form, #overlay-container {
     height: 100vh;
     width: 50vw;
     display: grid;
     z-index: 1;
 }
 
-#signup-form > form {
+#signup-form > form, #popup {
     border: 2px solid black;
     background-color: #ffa07a;
     align-self: center;
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 1rem;
+}
+
+#popup {
+height: 75vh;
+width: 50vw;
 }
 
 #signup-form > form > .buttons {
