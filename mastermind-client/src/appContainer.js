@@ -16,4 +16,10 @@ class AppContainer {
         .then(mm => document.getElementById('mastermindName').innerText = mm.username)
     }
 
+    startNewGame() {
+        this.getMasterMind()
+        this.game = new Game();
+        this.game.user = this.user.id;
+        this.game.begin()
+    }
 }

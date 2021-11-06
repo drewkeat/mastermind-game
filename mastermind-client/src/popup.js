@@ -17,4 +17,9 @@ class Popup{
             </div>
         </div>`
     }
+
+    remove() {
+        document.getElementById('overlay').remove()
+        app.game.renderBoardState()
+    }
 }

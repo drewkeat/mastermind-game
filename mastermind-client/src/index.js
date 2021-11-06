@@ -1,6 +1,5 @@
 console.log('linked')
 const app = new AppContainer();
-app.getMasterMind()
 
 const signupButton = document.getElementById("openSignup")
 signupButton.addEventListener("click", () => {
@@ -9,4 +8,4 @@ signupButton.addEventListener("click", () => {
     form.bindListeners();
 })
 
-app.game.begin()
+app.startNewGame()

@@ -3,7 +3,7 @@ class Game {
     this.id
     this.user;
     this.combo;
-    this.score = 10000;
+    this.score = 11000;
     this.board;
   }
 
@@ -104,33 +104,7 @@ class Game {
     let accuracy = this.checkAccuracy(guess);
     this.renderFeedback(accuracy);
     this.saveBoardState();
-    //DO THIS: update if/else below to include score render methods, restart, and save games FIX THIS
-    //if win, display win offer restart
-    //if lose, display lose offer restart
-    //else vvvvv
-    if (accuracy[0] === 4) {
-      this.displayCombo();
-      console.log(
-        `You Win! \n Score = ${
-          parseInt(
-            document
-              .querySelector("[data-active-row]")
-              .id.match(/guessRow(.*)/)[1]
-          ) * 1000
-        } \n (call restart function)`
-      );
-    } else {
-      this.changeActiveRow();
-      console.log(
-        `Updated Score = ${
-          parseInt(
-            document
-              .querySelector("[data-active-row]")
-              .id.match(/guessRow(.*)/)[1]
-          ) * 1000
-        }`
-      );
-    }
+    this.checkWin(accuracy) ? this.offerNewGame() : this.changeActiveRow()
   }
 
   checkAccuracy(guess) {
@@ -158,6 +132,17 @@ class Game {
     return [rightPlace, rightColor];
   }
 
+  checkWin(accuracy) {
+    const message = document.querySelector('#board-head > b')
+    if (accuracy[0] === 4) {
+      this.displayCombo();
+      message.innerText = "You Win!"
+      return true
+    } else {
+      return false
+    }
+  }
+
   renderFeedback(accuracy) {
     const feedbackHoles = document.querySelectorAll(
       "[data-active-row] > .feedback-box >*"
@@ -172,11 +157,6 @@ class Game {
       feedbackHoles[startPlacePegs].classList.add("right-color");
       startPlacePegs++;
     }
-    this.score = parseInt(
-      document
-        .querySelector("[data-active-row]")
-        .id.match(/guessRow(.*)/)[1]
-    ) * 1000
     document.getElementById('gameScore').innerText = this.score
   }
 
@@ -184,14 +164,22 @@ class Game {
     const currentRow = document.querySelector("[data-active-row]");
     const currentRowNum = parseInt(currentRow.id.match(/guessRow(.*)/)[1]);
     const nextRow = document.querySelector(`#guessRow${currentRowNum - 1}`);
-    currentRow.childNodes.forEach((node) => {
-      let oldNode = node;
-      let newNode = node.cloneNode(true);
-      oldNode.parentNode.replaceChild(newNode, oldNode);
-    });
-    currentRow.toggleAttribute("data-active-row");
-    nextRow.toggleAttribute("data-active-row");
-    this.bindEventListeners();
+    if (currentRowNum === 1) {
+      this.displayCombo()
+      const message = document.querySelector('#board-head > b')
+      message.innerText = "You lost!"
+      this.offerNewGame()
+    } else {
+      this.score = parseInt(currentRowNum) * 1000
+      currentRow.childNodes.forEach((node) => {
+        let oldNode = node;
+        let newNode = node.cloneNode(true);
+        oldNode.parentNode.replaceChild(newNode, oldNode);
+      });
+      currentRow.toggleAttribute("data-active-row");
+      nextRow.toggleAttribute("data-active-row");
+      this.bindEventListeners();
+  }
   }
 
   displayCombo() {
@@ -232,5 +220,12 @@ class Game {
       },
       body: JSON.stringify(app.game.makeConfigObj())
       })
+  }
+
+  offerNewGame() {
+    const btn = document.createElement('button')
+    btn.innerText = "New Game"
+    btn.addEventListener('click', e => app.startNewGame())
+    document.getElementById('board-head').append(btn)
   }
 }
