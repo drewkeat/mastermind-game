@@ -5,7 +5,7 @@ class AppContainer {
         this.game = new Game();
     }
 
-    // build fetch method to retrieve high scores
+    // DO THIS: build fetch method to retrieve high scores
     getHighScores() {
         fetch()
     }

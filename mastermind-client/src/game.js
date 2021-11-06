@@ -103,8 +103,11 @@ class Game {
     guessPegs.forEach((peg) => guess.push(peg.classList[1]));
     let accuracy = this.checkAccuracy(guess);
     this.renderFeedback(accuracy);
-    //update if/else below to include score render methods, restart, and save games FIX THIS
     this.saveBoardState();
+    //DO THIS: update if/else below to include score render methods, restart, and save games FIX THIS
+    //if win, display win offer restart
+    //if lose, display lose offer restart
+    //else vvvvv
     if (accuracy[0] === 4) {
       this.displayCombo();
       console.log(
