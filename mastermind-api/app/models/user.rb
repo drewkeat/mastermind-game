@@ -10,4 +10,9 @@ class User < ApplicationRecord
     end
     return score
   end
+
+  def self.mastermind
+    self.all.sort_by(&:total_score).last
+  end
+
 end
