@@ -3,16 +3,16 @@ class User < ApplicationRecord
   has_many :games
   validates :username, uniqueness: true
 
-  def total_score
+  def avg_score
     score = 0
     self.games.each do |game|
       score += game.score
     end
-    return score
+    return score / self.games.count
   end
 
   def self.mastermind
-    self.all.sort_by(&:total_score).last
+    all.sort_by{|u| u.avg_score}.last
   end
 
 end
