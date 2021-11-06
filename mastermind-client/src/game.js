@@ -25,6 +25,7 @@ class Game {
   renderBoardState() {
     if (this.board) {
       document.querySelector("main").innerHTML = this.board;
+      document.getElementById("gameScore").innerText = this.score
       this.bindEventListeners();
     } else {
       this.resetBoardState();
@@ -35,6 +36,7 @@ class Game {
     document.querySelector("main").innerHTML = document.querySelector(
       "#newBoard"
     ).innerHTML;
+    document.getElementById("gameScore").innerText = this.score
     this.bindEventListeners();
   }
 
@@ -167,7 +169,12 @@ class Game {
       feedbackHoles[startPlacePegs].classList.add("right-color");
       startPlacePegs++;
     }
-    //Update and Render scoreboard here
+    this.score = parseInt(
+      document
+        .querySelector("[data-active-row]")
+        .id.match(/guessRow(.*)/)[1]
+    ) * 1000
+    document.getElementById('gameScore').innerText = this.score
   }
 
   changeActiveRow() {
