@@ -15,4 +15,9 @@ class User < ApplicationRecord
     all.sort_by{|u| u.avg_score}.last
   end
 
+  def as_json(options={})
+    options[:methods] = [:avg_score]
+    super
+  end
+
 end

@@ -1,7 +1,8 @@
 class User {
-  constructor(id, name) {
+  constructor(id, name, avgScore) {
     this.id = id;
     this.name = name;
+    this.avgScore = avgScore;
     this.games = [];
   }
 
@@ -20,8 +21,9 @@ class User {
       .then((data) => {
         if (data.id) {
             //Set current user & remove form overlay
-          let user = new User(data.id, data.username);
+          let user = new User(data.id, data.username, data.avg_score);
           app.user = user;
+          app.displayUserAvg();
           app.game.user = user.id;
           let welcomeBadge = document.createElement('h2')
           welcomeBadge.textContent = `Welcome,\n ${user.name}`
