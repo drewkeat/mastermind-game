@@ -17,11 +17,13 @@ class AppContainer {
     }
 
     updateUser() {
-        fetch(`${this.url}/users/${this.user.id}`)
-        .then(resp => resp.json())
-        .then(data => {
-            this.user.avgScore = data.avg_score
-        })
+        if (this.user.id) {
+            fetch(`${this.url}/users/${this.user.id}`)
+            .then(resp => resp.json())
+            .then(obj => {
+                this.user.avgScore = obj.data.attributes.avg_score
+            })
+        }
     }
 
     displayUserAvg() {
