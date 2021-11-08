@@ -5,10 +5,14 @@ class User < ApplicationRecord
 
   def avg_score
     score = 0
-    self.games.each do |game|
-      score += game.score
+    if self.games.count > 0
+      self.games.each do |game|
+        score += game.score
+      end
+      return score / self.games.count
+    else
+      return 0
     end
-    return score / self.games.count
   end
 
   def self.mastermind
