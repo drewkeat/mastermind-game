@@ -22,6 +22,7 @@ class AppContainer {
             .then(resp => resp.json())
             .then(obj => {
                 this.user.avgScore = obj.data.attributes.avg_score
+                this.displayUserAvg()
             })
         }
     }
@@ -36,7 +37,6 @@ class AppContainer {
     startNewGame() {
         this.getMasterMind()
         this.updateUser()
-        this.displayUserAvg()
         this.game = new Game();
         this.game.user = this.user.id;
         this.game.begin()
