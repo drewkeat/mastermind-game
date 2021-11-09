@@ -37,6 +37,7 @@ class User {
           document.getElementById('form-wrapper').remove();
           document.querySelector('sidebar > h2').remove()
           document.getElementById('openSignup').replaceWith(welcomeBadge);
+          initializeEvents()
           app.game.bindEventListeners()
       })
       // .catch(resp => {

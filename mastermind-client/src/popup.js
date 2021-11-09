@@ -11,15 +11,17 @@ class Popup{
                 <div id="popup">
                     <h1>${this.header}</h1>
                     <div id="content">
-                        ${this.content}
                     </div>
                 </div>
             </div>
         </div>`
+        document.getElementById('content').append(this.content)
+        document.getElementById('overlay').addEventListener('click', e => this.remove())
     }
 
     remove() {
         document.getElementById('overlay').remove()
         app.game.renderBoardState()
+        initializeEvents()
     }
 }

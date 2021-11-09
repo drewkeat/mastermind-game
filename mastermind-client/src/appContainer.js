@@ -7,7 +7,28 @@ class AppContainer {
 
     // DO THIS: build fetch method to retrieve high scores
     getHighScores() {
-        fetch()
+        const highScoreHTML = document.createElement('div')
+        highScoreHTML.id = 'highScores'
+        let players = []
+        fetch(`${this.url}/users`)
+        .then(resp => resp.json())
+        .then(object => {
+            object.data.forEach(player => players.push({...player.attributes}))
+            players.sort((a,b) => (a.avg_score > b.avg_score) ? -1 : ((b.avg_score > a.avg_score) ? 1 : 0))
+            this.appendScores(players, highScoreHTML)
+            const highScorePopup = new Popup('High Scores', highScoreHTML)
+            highScorePopup.display()
+        })
+    }
+
+    appendScores(userArray, scoreContainer) {
+        userArray.forEach(user => {
+            let name = document.createElement('h3')
+            let score = document.createElement('h3')
+            name.innerText = user.username
+            score.innerText = user.avg_score
+            scoreContainer.append(name, score)
+        })
     }
 
     getMasterMind() {

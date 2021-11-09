@@ -54,7 +54,8 @@ main {
 
 #board {
     height: min-content;
-    width: minmax(min-content, 85%);
+    min-width: fit-content;
+    max-width: 75%;
     background: tan;
     margin: auto;
 }
@@ -229,7 +230,7 @@ background: olive;
     display: revert
 }
 
-#scoreBoard {
+#scoreBoard, #highScores {
     display:grid;
     grid-template-columns: repeat(2,1fr);
     border: 10px groove gold;
