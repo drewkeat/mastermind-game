@@ -17,18 +17,14 @@ class User {
     })
       .then((response) => {
         if (!response.ok) {
-          throw response.json()
+          throw response
         }
         return response.json()
-      })
-      .catch(reason => {
-        console.log(reason.object)
       })
       .then((data) => {
           //Set current user & remove form overlay
           const attr = {...data.data.attributes}
           let user = new User(attr.id, attr.username, attr.avg_score);
-          // debugger
           app.user = user;
           app.displayUserAvg();
           app.game.user = user.id;
@@ -40,10 +36,7 @@ class User {
           initializeEvents()
           app.game.bindEventListeners()
       })
-      // .catch(resp => {
-      //   debugger
-      //   resp.json()
-      // })
+      .catch(resp => alert('Review your login information'))
       // .then(data => {
       //     for (let error in data) {
       //       let ele = document.querySelector(`label[for=${error}]`);
