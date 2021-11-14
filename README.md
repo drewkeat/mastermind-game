@@ -22,6 +22,6 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Further Information:
 
 Project demo:
-[Video Walkthrough]()
+[Video Walkthrough](https://youtu.be/bVuAZogGlGM)
 
-[Associated Blog]()
+[Associated Blog](https://drewjkeat.medium.com/mastermind-board-game-single-page-js-rails-api-81645b734de2)
